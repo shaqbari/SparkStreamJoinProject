@@ -30,7 +30,7 @@ public class SparkManager {
 			JavaRDD<String> files=sc.textFile("./daum/daum.csv");//다시 실행하려면 파일을 지워야한다 aop로 처리
 			//csv는 이미 잘려져 있다.
 			
-			//자른거에 1씩 부여
+			//csv는 다 String으로 읽어온다.
 			JavaPairRDD<String, String> daum=files.mapToPair(new PairFunction<String, String, String>() {
 
 				@Override
