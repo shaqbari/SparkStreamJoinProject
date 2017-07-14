@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+	<servlet>
+		<servlet-name>dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/application-*.xml</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dispatcher</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping><!-- Spring ====== 1) client - request(*.do) 2) DispatcherServlet 
+		요청을 받는 클래스 3) HandlerMapping 요청 처리 클래스를 찾기(by XMLParsing) => @Controller 
+		=> @RequestMapping => 처리하는 클래스 제작 (Model) 4) DispatcherServlet : 결과값 받기 => 
+		model.addAttribute("") => 경로명, 확장자(자바전용이 아니기 때문에) 5) model(request) => ViewResolver전송 
+		6) ViewResolver ==> JSP(JSTL, EL) ============ ==> DI @Autowired @Qualifier 
+		@Resource setter DI method DI(생성시, 소멸시) 객체(component)생성과 소멸을 담당하는 역할(생명주기 
+		관리, container) ==> AOP 반복적인 수행을 자동처리해주는 역할 --><!--Post방식의 한글 인코딩 부분 -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+</web-app>
