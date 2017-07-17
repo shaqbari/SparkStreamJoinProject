@@ -7,9 +7,91 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/style.css">
-<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="http://code.jquery.com/jquery.min.js"></script>
 <script>
 
+	$(function(){//window.onload
+		Highcharts.chart('container', {
+		    chart: {
+		        type: 'column'
+		    },
+		    title: {
+		        text: 'Music 순위 현황'
+		    },
+		    subtitle: {
+		        text: 'Source: T:CAT.com'
+		    },
+		    xAxis: {
+		        categories: [
+		            'Jan',
+		            'Feb',
+		            'Mar',
+		            'Apr',
+		            'May',
+		            'Jun',
+		            'Jul',
+		            'Aug',
+		            'Sep',
+		            'Oct',
+		            'Nov',
+		            'Dec'
+		        ],
+		        crosshair: true
+		    },
+		    yAxis: {
+		        min: 0,
+		        title: {
+		            text: 'Rainfall (mm)'
+		        }
+		    },
+		    tooltip: {
+		        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+		        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+		            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+		        footerFormat: '</table>',
+		        shared: true,
+		        useHTML: true
+		    },
+		    plotOptions: {
+		        column: {
+		            pointPadding: 0.2,
+		            borderWidth: 0
+		        }
+		    },
+		    series: [{
+		        name: '빨간 맛 Red Flavor',
+		        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+		
+		    }, {
+		        name: 'Artist',
+		        data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+		
+		    }, {
+		        name: '비도 오고 그래서 Feat. 신용재',
+		        data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+		
+		    }, {
+		        name: '마지막처럼',
+		        data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+		
+		    }, {
+		        name: '마지막처럼',
+		        data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+		
+		    }]
+		});
+		
+	})
+	/*
+	1 	빨간 맛 Red Flavor 	97
+2 	Artist 	93
+3 	비도 오고 그래서 Feat. 신용재 	92
+4 	마지막처럼 	84
+5 	마지막처럼 	82
+	*/
+	
 </script>
 </head>
 <body>
@@ -122,10 +204,8 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div >
-                          		<svg class="chart"></svg>
-								<script src="js/index.js"></script>
-                            </div>
+                        	<!-- 랭킹차트 -->
+                            <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -141,66 +221,26 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-lg-4">
+                                <div class="col-lg-12">
                                     <div class="table-responsive">
                                         <table class="table table-bordered table-hover table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th>#</th>
-                                                    <th>Date</th>
-                                                    <th>Time</th>
-                                                    <th>Amount</th>
+                                                    <th>순위</th>
+                                                    <th>타이틀곡</th>
+                                                    <th>레이팅</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>3326</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>3:29 PM</td>
-                                                    <td>$321.33</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3325</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>3:20 PM</td>
-                                                    <td>$234.34</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3324</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>3:03 PM</td>
-                                                    <td>$724.17</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3323</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>3:00 PM</td>
-                                                    <td>$23.71</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3322</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>2:49 PM</td>
-                                                    <td>$8345.23</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3321</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>2:23 PM</td>
-                                                    <td>$245.12</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3320</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>2:15 PM</td>
-                                                    <td>$5663.54</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3319</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>2:13 PM</td>
-                                                    <td>$943.45</td>
-                                                </tr>
+                                            	<c:forEach var="vo" items="${list}" varStatus="s">
+                                                	<c:if test="${s.index<10 }">
+		                                                <tr>
+		                                                    <td>${vo.rank }</td>
+		                                                    <td>${vo.title }</td>
+		                                                    <td>${vo.rating }</td>
+		                                                </tr>
+		                                            </c:if>
+                                                </c:forEach>
                                             </tbody>
                                         </table>
                                     </div>
