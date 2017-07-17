@@ -25,18 +25,9 @@
 		    },
 		    xAxis: {
 		        categories: [
-		            'Jan',
-		            'Feb',
-		            'Mar',
-		            'Apr',
-		            'May',
-		            'Jun',
-		            'Jul',
-		            'Aug',
-		            'Sep',
-		            'Oct',
-		            'Nov',
-		            'Dec'
+		            'MELON',
+		            'GENIE',
+		            'SIST'
 		        ],
 		        crosshair: true
 		    },
@@ -60,27 +51,7 @@
 		            borderWidth: 0
 		        }
 		    },
-		    series: [{
-		        name: '빨간 맛 Red Flavor',
-		        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
-		
-		    }, {
-		        name: 'Artist',
-		        data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
-		
-		    }, {
-		        name: '비도 오고 그래서 Feat. 신용재',
-		        data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
-		
-		    }, {
-		        name: '마지막처럼',
-		        data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
-		
-		    }, {
-		        name: '마지막처럼',
-		        data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
-		
-		    }]
+		    series: <%=request.getAttribute("json") %>
 		});
 		
 	})
@@ -258,57 +229,21 @@
                 <div class="col-lg-4">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-bell fa-fw"></i> Notifications Panel
+                            <i class="fa fa-bell fa-fw"></i> 새로운 뉴스
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="list-group">
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small"><em>4 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small"><em>12 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                    <span class="pull-right text-muted small"><em>27 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small"><em>43 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small"><em>11:32 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-bolt fa-fw"></i> Server Crashed!
-                                    <span class="pull-right text-muted small"><em>11:13 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-warning fa-fw"></i> Server Not Responding
-                                    <span class="pull-right text-muted small"><em>10:57 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-shopping-cart fa-fw"></i> New Order Placed
-                                    <span class="pull-right text-muted small"><em>9:49 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-money fa-fw"></i> Payment Received
-                                    <span class="pull-right text-muted small"><em>Yesterday</em>
-                                    </span>
-                                </a>
-                            </div>
+								<c:forEach var="vo" items="${nList }" varStatus="s">
+									<c:if test="${s.index<10 }">
+									<a href="${vo.link }" class="list-group-item" target="blank"><!-- target="blank"는 새창으로 띄운다. -->
+									 <i class="fa fa-comment fa-fw"></i> ${vo.title }
+									  <span	class="pull-right text-muted small">\
+									<em>${vo.pubDate }</em> </span>
+									</a>
+									</c:if>
+								</c:forEach>
+							</div>
                             <!-- /.list-group -->
                             <!-- <a href="#" class="btn btn-default btn-block"></a> -->
                         </div>
